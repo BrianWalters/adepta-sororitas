@@ -24,7 +24,7 @@ export default function Home({units}: InferGetStaticPropsType<typeof getStaticPr
 }
 
 export async function getStaticProps() {
-    const units = await provider.getUnitListing();
+    const units = await provider.getUnitListings();
     return {
         props: {
             units

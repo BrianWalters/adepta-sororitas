@@ -4,10 +4,16 @@ query {
     total
     items {
       name
+      slug
       power
       image {
         title
         url
+      }
+      keywordsCollection(limit: 5) {
+        items {
+          name
+        }
       }
       intrinsicAbilitiesCollection(limit: 10) {
         items {

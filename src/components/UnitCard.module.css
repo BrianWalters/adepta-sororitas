@@ -12,6 +12,11 @@
     font-size: 2rem;
 }
 
+.unitCard__keywords {
+    font-family: 'Helvetica', sans-serif;
+    order: -1;
+}
+
 .unitCard__power {
     align-items: center;
     background-color: goldenrod;

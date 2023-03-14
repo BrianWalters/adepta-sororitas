@@ -1,5 +1,7 @@
 import {UnitListing} from "@/cms/Domain/UnitListing";
+import {UnitDetail} from "@/cms/Domain/UnitDetail";
 
 export interface ProviderInterface {
-    getUnitListing: () => Promise<UnitListing[]>;
+    getUnitListings: () => Promise<UnitListing[]>;
+    getUnitDetailBySlug: (slug: string) => Promise<UnitDetail>;
 }
