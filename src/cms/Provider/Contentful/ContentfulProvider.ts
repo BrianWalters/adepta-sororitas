@@ -1,6 +1,6 @@
 import {ProviderInterface} from "@/cms/Provider/ProviderInterface";
-import {Unit} from "@/cms/Domain/Unit";
-import {allUnits} from "@/cms/Provider/Contentful/queries/units";
+import {UnitListing} from "@/cms/Domain/UnitListing";
+import {unitListingsAlphabetical} from "@/cms/Provider/Contentful/queries/units";
 
 class ContentfulProvider implements ProviderInterface {
     constructor(private space: string, private accessToken: string) {
@@ -18,9 +18,23 @@ class ContentfulProvider implements ProviderInterface {
         }).then((response) => response.json());
     }
 
-    async getUnits(): Promise<Unit[]> {
-        return this.makeGraphQLQuery(allUnits)
-            .then(response => response.data.unitCollection.items)
+    async getUnitListing(): Promise<UnitListing[]> {
+        return this.makeGraphQLQuery(unitListingsAlphabetical)
+            .then(response => {
+                const unitListings: UnitListing[] = [];
+                response.data.unitCollection.items.forEach((unitItem: any) => {
+                    unitListings.push({
+                        name: unitItem.name,
+                        image: unitItem.image,
+                        power: unitItem.power,
+                        intrinsicAbilities: unitItem.intrinsicAbilitiesCollection.items.map((ia:any) => ia.name),
+                        weapons: unitItem.weaponsCollection.items.map((w: any) => w.name),
+                        wargear: unitItem.availableWargearCollection.items.map((wg: any) => wg.name),
+                    })
+                })
+
+                return unitListings;
+            })
             .catch(error => {
                 console.log(error);
                 return [];

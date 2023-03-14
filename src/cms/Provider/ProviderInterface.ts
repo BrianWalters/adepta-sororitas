@@ -1,5 +1,5 @@
-import {Unit} from "@/cms/Domain/Unit";
+import {UnitListing} from "@/cms/Domain/UnitListing";
 
 export interface ProviderInterface {
-    getUnits: () => Promise<Unit[]>;
+    getUnitListing: () => Promise<UnitListing[]>;
 }

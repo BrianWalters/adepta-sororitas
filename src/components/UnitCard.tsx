@@ -1,9 +1,10 @@
 import {FunctionComponent} from "react";
-import {Unit} from "@/cms/Domain/Unit";
+import {UnitListing} from "@/cms/Domain/UnitListing";
 import styles from './UnitCard.module.css'
+import {SimpleList} from "@/components/SimpleList";
 
 export interface UnitCardProps {
-    unit: Unit;
+    unit: UnitListing;
 }
 
 export const UnitCard: FunctionComponent<UnitCardProps> = ({unit}) => {
@@ -14,6 +15,20 @@ export const UnitCard: FunctionComponent<UnitCardProps> = ({unit}) => {
             <div className={styles.unitCard__power}>
                 <span className={styles.unitCard__powerLabel}>Power</span>
                 <span>{unit.power}</span>
+            </div>
+            <div className={styles.unitCard__lists}>
+                <div>
+                    <strong>Weapons: </strong>
+                    <SimpleList items={unit.weapons} />
+                </div>
+                <div>
+                    <strong>Abilities: </strong>
+                    <SimpleList items={unit.intrinsicAbilities} />
+                </div>
+                <div>
+                    <strong>Wargear: </strong>
+                    <SimpleList items={unit.wargear} />
+                </div>
             </div>
         </div>
     )

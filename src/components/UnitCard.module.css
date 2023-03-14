@@ -32,3 +32,10 @@
 .unitCard__powerLabel {
     font-size: .65rem;
 }
+
+.unitCard__lists {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Helvetica', sans-serif;
+    gap: .5rem;
+}
