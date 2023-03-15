@@ -1,0 +1,14 @@
+.abilityCard {
+    border: 1px solid gray;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.abilityCard__name {
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+.abilityCard__ability {
+
+}

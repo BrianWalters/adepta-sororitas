@@ -4,6 +4,7 @@ import {cmsProvider} from "@/cms/Provider/CmsProvider";
 import styles from './UnitDetailPage.module.css';
 import {SimpleList} from "@/components/SimpleList";
 import Link from "next/link";
+import {AbilityCard} from "@/components/AbilityCard";
 
 export default function UnitDetail({unit}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
@@ -107,6 +108,23 @@ export default function UnitDetail({unit}: InferGetStaticPropsType<typeof getSta
                         })}
                         </tbody>
                     </table>
+                    <div className={styles.unitDetail__abilitiesAndWargear}>
+                        <div>
+                            <h2 className="mb">Abilities</h2>
+                            <dl className="d-flex flex-direction-column gap">
+                                { unit.intrinsicAbilities.map(ability => <AbilityCard key={ability.name} name={ability.name} ability={ability.rules} />)}
+                            </dl>
+                        </div>
+                        <div>
+                            <h2 className="mb">Wargear</h2>
+                            <dl className="d-flex flex-direction-column gap">
+                                { unit.wargear.length > 0
+                                    ? unit.wargear.map(wg => <AbilityCard key={wg.name} name={wg.name} ability={wg.abilities} />)
+                                    : 'None'
+                                }
+                            </dl>
+                        </div>
+                    </div>
                 </div>
             </main>
         </>

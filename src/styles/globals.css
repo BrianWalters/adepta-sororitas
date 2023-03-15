@@ -40,6 +40,30 @@ th, td {
   text-align: center;
 }
 
+.d-flex {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.gap {
+  gap: 1rem;
+}
+
+.m {
+  margin: 1rem;
+}
+
+.mt {
+  margin-top: 1rem;
+}
+
+.mb {
+  margin-bottom: 1rem;
+}
+
 .power-badge {
   align-items: center;
   background-color: goldenrod;
