@@ -14,6 +14,8 @@ export const transformToUnitDetail: (queryResponse: any) => UnitDetail = (queryR
         keywords: unit.keywordsCollection.items.map((k:any) => k.name),
         wargear: unit.availableWargearCollection.items,
         power: unit.power,
-        weapons: unit.weaponsCollection.items
+        weapons: unit.weaponsCollection.items.map((item: any) => {
+            return {...item, weaponType: item.weaponType.name}
+        })
     }
 }

@@ -59,7 +59,7 @@ export default function UnitDetail({unit}: InferGetStaticPropsType<typeof getSta
                         </tr>
                         </thead>
                         <tbody>
-                        { unit.models.map(model => {
+                        {unit.models.map(model => {
                             return (
                                 <tr key={model.name}>
                                     <td>{model.name}</td>
@@ -90,15 +90,17 @@ export default function UnitDetail({unit}: InferGetStaticPropsType<typeof getSta
                         </tr>
                         </thead>
                         <tbody>
-                        { unit.weapons.map(weapon => {
+                        {unit.weapons.map(weapon => {
                             return (
                                 <tr key={weapon.name}>
                                     <td>{weapon.name}</td>
-                                    <td>{weapon.range}</td>
-                                    <td>{`${weapon.weaponType} ${weapon.attacks}`}</td>
-                                    <td>{weapon.strength}</td>
-                                    <td>{weapon.armorPiercing}</td>
-                                    <td>{weapon.damage}</td>
+                                    <td>
+                                        {weapon.range ? `${weapon.range}"` : 'Melee'}
+                                    </td>
+                                    <td>{`${weapon.weaponType} ${weapon.attacks ? weapon.attacks : ''}`}</td>
+                                    <td className="text-right">{weapon.strength}</td>
+                                    <td className="text-right">{weapon.armorPiercing}</td>
+                                    <td className="text-right">{weapon.damage}</td>
                                     <td>{weapon.abilities ? weapon.abilities : '-'}</td>
                                 </tr>
                             );

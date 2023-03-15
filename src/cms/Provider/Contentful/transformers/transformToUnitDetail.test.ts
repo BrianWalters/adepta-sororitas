@@ -225,5 +225,6 @@ describe('transformToUnitDetail function', () => {
                 rules: "At the start of the first battle round, before the first turn begins, this unit can move as if it were your Movement phase. It must end its move more than 9\" from enemy models."
             }
         ]);
+        expect(unitDetail.weapons[0].weaponType).toEqual('Grenade');
     });
 });
