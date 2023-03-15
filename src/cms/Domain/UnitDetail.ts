@@ -1,5 +1,6 @@
 import {Model} from "@/cms/Domain/Model";
 import {Weapon} from "@/cms/Domain/Weapon";
+import {Ability} from "@/cms/Domain/Ability";
 
 export interface UnitDetail {
     name: string;
@@ -10,10 +11,7 @@ export interface UnitDetail {
     }
     keywords: string[];
     models: Model[];
-    intrinsicAbilities: {
-        name: string;
-        rules: string;
-    }[];
+    intrinsicAbilities: Ability[];
     weapons: Weapon[];
     wargear: {
         name: string;

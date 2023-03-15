@@ -1,0 +1,19 @@
+.abilities {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.abilities__list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+}
+
+.abilities__name {
+    font-weight: bold;
+}
+
+.abilities__rules {
+    max-width: 80ch;
+}

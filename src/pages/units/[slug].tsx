@@ -3,8 +3,8 @@ import {GetStaticPropsContext, InferGetStaticPropsType} from "next";
 import {cmsProvider} from "@/cms/Provider/CmsProvider";
 import styles from './UnitDetailPage.module.css';
 import {SimpleList} from "@/components/SimpleList";
-import Link from "next/link";
 import {AbilityCard} from "@/components/AbilityCard";
+import {PageHeader} from "@/components/PageHeader";
 
 export default function UnitDetail({unit}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
@@ -12,9 +12,7 @@ export default function UnitDetail({unit}: InferGetStaticPropsType<typeof getSta
             <Head>
                 <title>{unit.name} — Adepta Sororitas</title>
             </Head>
-            <header>
-                <Link href="/">Home</Link>
-            </header>
+            <PageHeader />
             <main className={styles.unitDetail}>
                 <div className={styles.unitDetail__summary}>
                     <img className={styles.unitDetail__image} src={unit.image.url} alt={unit.image.title}/>

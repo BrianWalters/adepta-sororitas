@@ -8,3 +8,10 @@ export interface Weapon {
     damage: string,
     abilities: string|null;
 }
+
+export interface WeaponWithUnits extends Weapon {
+    units: {
+        name: string;
+        slug: string;
+    }[]
+}

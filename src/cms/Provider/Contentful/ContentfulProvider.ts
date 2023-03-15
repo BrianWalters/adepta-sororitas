@@ -4,6 +4,10 @@ import {unitListingsAlphabetical} from "@/cms/Provider/Contentful/queries/unitLi
 import {UnitDetail} from "@/cms/Domain/UnitDetail";
 import {unitDetailBySlug} from "@/cms/Provider/Contentful/queries/unitDetailBySlug";
 import {transformToUnitDetail} from "@/cms/Provider/Contentful/transformers/transformToUnitDetail";
+import {Ability} from "@/cms/Domain/Ability";
+import {abilities} from "@/cms/Provider/Contentful/queries/abilities";
+import {WeaponWithUnits} from "@/cms/Domain/Weapon";
+import {weaponsWithUnitReferences} from "@/cms/Provider/Contentful/queries/weaponsWithUnitReferences";
 
 class ContentfulProvider implements ProviderInterface {
     constructor(private space: string, private accessToken: string) {
@@ -54,6 +58,45 @@ class ContentfulProvider implements ProviderInterface {
                 throw error;
             })
     }
+
+    getAbilities(): Promise<Ability[]> {
+        return this.makeGraphQLQuery(abilities)
+            .then(response => response.data.abilityCollection.items)
+            .catch(error => {
+                console.error(error);
+                throw error;
+            })
+    }
+
+    getWeaponsWithUnitReferences(): Promise<WeaponWithUnits[]> {
+        return this.makeGraphQLQuery(weaponsWithUnitReferences)
+            .then(response => {
+                return response.data.weaponCollection.items.map((item: any) => {
+                    return {
+                        name: item.name,
+                        range: item.range,
+                        weaponType: item.weaponType.name,
+                        attacks: item.attacks,
+                        strength: item.strength,
+                        armorPiercing: item.armorPiercing,
+                        damage: item.damage,
+                        abilities: item.abilities,
+                        units: item.linkedFrom.unitCollection.items.map((item: any) => {
+                            return {
+                                name: item.name,
+                                slug: item.slug
+                            }
+                        })
+                    }
+                })
+            })
+            .catch(error => {
+                console.error(error);
+                throw error;
+            })
+    }
+
+
 }
 
 export const contentfulProvider = new ContentfulProvider(

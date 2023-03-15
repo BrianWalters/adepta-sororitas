@@ -3,6 +3,7 @@ import styles from '@/styles/Home.module.css'
 import {cmsProvider} from "@/cms/Provider/CmsProvider";
 import {InferGetStaticPropsType} from "next";
 import {UnitCard} from "@/components/UnitCard";
+import Link from "next/link";
 
 export default function Home({units}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
@@ -14,6 +15,12 @@ export default function Home({units}: InferGetStaticPropsType<typeof getStaticPr
             </Head>
             <main className={styles.home}>
                 <ul className={styles.home__grid}>
+                    <li className={styles.home__otherCard}>
+                        <Link href="/abilities">Abilities</Link>
+                    </li>
+                    <li className={styles.home__otherCard}>
+                        <Link href="/weapons">Weapons</Link>
+                    </li>
                     {units.map(unit => <li key={unit.name}>
                         <UnitCard unit={unit} />
                     </li>)}
