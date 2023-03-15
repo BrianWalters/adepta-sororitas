@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-import {provider} from "@/cms/Provider/Provider";
+import {cmsProvider} from "@/cms/Provider/CmsProvider";
 import {InferGetStaticPropsType} from "next";
 import {UnitCard} from "@/components/UnitCard";
 
@@ -24,7 +24,7 @@ export default function Home({units}: InferGetStaticPropsType<typeof getStaticPr
 }
 
 export async function getStaticProps() {
-    const units = await provider.getUnitListings();
+    const units = await cmsProvider.getUnitListings();
     return {
         props: {
             units

@@ -18,8 +18,8 @@ export const UnitCard: FunctionComponent<UnitCardProps> = ({unit}) => {
             <div className={styles.unitCard__keywords}>
                 <SimpleList items={unit.keywords}/>
             </div>
-            <div className={styles.unitCard__power}>
-                <span className={styles.unitCard__powerLabel}>Power</span>
+            <div className={`${styles.unitCard__power} power-badge`}>
+                <span className='power-label'>Power</span>
                 <span>{unit.power}</span>
             </div>
             <div className={styles.unitCard__lists}>

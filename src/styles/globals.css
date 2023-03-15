@@ -12,6 +12,15 @@ img {
   max-width: 100%
 }
 
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 2px groove #333;
+  padding: 0.5rem;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -21,4 +30,30 @@ img {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.power-badge {
+  align-items: center;
+  background-color: goldenrod;
+  border-radius: 1rem;
+  box-shadow: 0 0 12px 1px goldenrod;
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  font-family: monospace;
+  justify-content: center;
+  line-height: 1;
+  padding: 0.5rem;
+}
+
+.power-label {
+  font-size: .65rem;
+}
+
+.sans-serif {
+  font-family: 'Helvetica', sans-serif;
 }

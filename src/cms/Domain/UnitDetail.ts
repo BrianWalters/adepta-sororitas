@@ -17,6 +17,6 @@ export interface UnitDetail {
     weapons: Weapon[];
     wargear: {
         name: string;
-        ability: string;
+        abilities: string;
     }[];
 }

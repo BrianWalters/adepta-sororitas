@@ -1,7 +1,8 @@
 import {ProviderInterface} from "@/cms/Provider/ProviderInterface";
 import {UnitListing} from "@/cms/Domain/UnitListing";
-import {unitListingsAlphabetical} from "@/cms/Provider/Contentful/queries/units";
+import {unitListingsAlphabetical} from "@/cms/Provider/Contentful/queries/unitListingsAlphabetical";
 import {UnitDetail} from "@/cms/Domain/UnitDetail";
+import {unitDetailBySlug} from "@/cms/Provider/Contentful/queries/unitDetailBySlug";
 import {transformToUnitDetail} from "@/cms/Provider/Contentful/transformers/transformToUnitDetail";
 
 class ContentfulProvider implements ProviderInterface {
@@ -9,14 +10,14 @@ class ContentfulProvider implements ProviderInterface {
 
     }
 
-    async makeGraphQLQuery(query: string): Promise<any> {
+    async makeGraphQLQuery(query: string, variables: object = {}): Promise<any> {
         return fetch(`https://graphql.contentful.com/content/v1/spaces/${this.space}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.accessToken}`
             },
-            body: JSON.stringify({ query })
+            body: JSON.stringify({ query, variables })
         }).then((response) => response.json());
     }
 
@@ -46,7 +47,12 @@ class ContentfulProvider implements ProviderInterface {
     }
 
     getUnitDetailBySlug(slug: string): Promise<UnitDetail> {
-        return Promise.resolve(transformToUnitDetail({}));
+        return this.makeGraphQLQuery(unitDetailBySlug, { slug })
+            .then(response => transformToUnitDetail(response))
+            .catch(error => {
+                console.error(error);
+                throw error;
+            })
     }
 }
 

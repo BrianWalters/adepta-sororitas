@@ -18,24 +18,9 @@
 }
 
 .unitCard__power {
-    align-items: center;
-    background-color: goldenrod;
-    border-radius: 1rem;
-    box-shadow: 0 0 12px 1px goldenrod;
-    display: flex;
-    flex-direction: column;
-    font-size: 2rem;
-    font-family: monospace;
-    justify-content: center;
-    line-height: 1;
-    padding: 0.5rem;
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
-}
-
-.unitCard__powerLabel {
-    font-size: .65rem;
 }
 
 .unitCard__lists {

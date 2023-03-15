@@ -1,17 +1,19 @@
 import {UnitDetail} from "@/cms/Domain/UnitDetail";
 
 export const transformToUnitDetail: (queryResponse: any) => UnitDetail = (queryResponse) => {
+    const unit = queryResponse.data.unitCollection.items[0];
+
     return {
         image: {
-            title: '',
-            url: ''
+            title: unit.image.title,
+            url: unit.image.url
         },
-        intrinsicAbilities: [],
-        name: 'Fake name',
-        models: [],
-        keywords: [],
-        wargear: [],
-        power: 0,
-        weapons: []
+        intrinsicAbilities: unit.intrinsicAbilitiesCollection.items,
+        name: unit.name,
+        models: unit.modelsCollection.items,
+        keywords: unit.keywordsCollection.items.map((k:any) => k.name),
+        wargear: unit.availableWargearCollection.items,
+        power: unit.power,
+        weapons: unit.weaponsCollection.items
     }
 }

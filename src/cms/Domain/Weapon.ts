@@ -1,6 +1,6 @@
 export interface Weapon {
     name: string,
-    range: 6;
+    range: number;
     weaponType: string;
     attacks: string|null,
     strength: string,
